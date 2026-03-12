@@ -2,9 +2,7 @@ package com.example.ktp_api.controller;
 
 import com.example.ktp_api.dto.*;
 import com.example.ktp_api.service.KtpService;
-
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
