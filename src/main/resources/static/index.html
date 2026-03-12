@@ -164,7 +164,7 @@
         loadData();
     });
 
-    // 1. Fungsi Tampil Data
+
     function loadData(){
         $("#tabelKtp").html(`<tr><td colspan="7" class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></td></tr>`);
 
@@ -203,7 +203,6 @@
         });
     }
 
-    // 2. Fungsi Tambah Data
     function tambahData(){
         let data = {
             nomorKtp: $("#nomorKtp").val(),
@@ -213,7 +212,6 @@
             jenisKelamin: $("#jenisKelamin").val()
         };
 
-        // Validasi form kosong
         if(!data.nomorKtp || !data.namaLengkap || !data.tanggalLahir){
             Swal.fire('Oops!', 'Mohon lengkapi NIK, Nama, dan Tanggal Lahir!', 'warning');
             return;
@@ -235,7 +233,7 @@
         });
     }
 
-    // 3. Fungsi Isi Form untuk Edit
+
     function editData(id, nomor, nama, alamat, tanggal, jk){
         $("#id").val(id);
         $("#nomorKtp").val(nomor);
@@ -244,12 +242,11 @@
         $("#tanggalLahir").val(tanggal);
         $("#jenisKelamin").val(jk);
 
-        // Sembunyikan tombol Simpan, tampilkan tombol Update
         $("#btnSimpan").addClass("d-none");
         $("#btnUpdate").removeClass("d-none");
     }
 
-    // 4. Fungsi Update Data
+
     function updateData(){
         let id = $("#id").val();
         let data = {
@@ -276,7 +273,6 @@
         });
     }
 
-    // 5. Fungsi Hapus Data
     function hapusData(id){
         Swal.fire({
             title: 'Yakin ingin menghapus?',
@@ -301,7 +297,6 @@
         })
     }
 
-    // 6. Fungsi Bersihkan Form
     function clearForm(){
         $("#id").val("");
         $("#nomorKtp").val("");
@@ -310,7 +305,6 @@
         $("#tanggalLahir").val("");
         $("#jenisKelamin").val("");
 
-        // Kembalikan tombol ke mode Simpan
         $("#btnSimpan").removeClass("d-none");
         $("#btnUpdate").addClass("d-none");
     }
