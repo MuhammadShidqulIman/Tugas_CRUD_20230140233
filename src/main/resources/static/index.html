@@ -2,297 +2,318 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>CRUD Data KTP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Manajemen Data KTP</title>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <style>
-
-        body{
-        font-family: Arial;
-        margin:40px;
-        background:#f4f4f4;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
         }
-
-        .container{
-        width:900px;
-        margin:auto;
-        background:white;
-        padding:20px;
-        border-radius:10px;
+        .navbar {
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
-
-        input,select{
-        padding:8px;
-        margin:5px;
-        width:200px;
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
         }
-
-        button{
-        padding:8px 15px;
-        margin:5px;
-        cursor:pointer;
+        .table-custom th {
+            background-color: #4361ee;
+            color: white;
+            font-weight: 500;
         }
-
-        table{
-        width:100%;
-        margin-top:20px;
-        border-collapse:collapse;
+        .table-custom tbody tr:hover {
+            background-color: #f1f3f5;
         }
-
-        table,th,td{
-        border:1px solid #ddd;
+        .btn-custom {
+            border-radius: 8px;
+            font-weight: 500;
         }
-
-        th,td{
-        padding:10px;
-        text-align:center;
-        }
-
-        th{
-        background:#3498db;
-        color:white;
-        }
-
     </style>
 </head>
 
 <body>
 
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+            <i class="fa-solid fa-id-card me-2"></i> E-KTP Dashboard
+        </a>
+    </div>
+</nav>
 
-    <h2>Form Data KTP</h2>
+<div class="container-fluid px-4">
+    <div class="row">
 
-    <input type="hidden" id="id">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-white border-bottom pb-0 pt-3">
+                    <h5 class="text-primary fw-bold"><i class="fa-solid fa-user-plus me-2"></i>Form Data KTP</h5>
+                </div>
+                <div class="card-body">
+                    <input type="hidden" id="id">
 
-    <input type="text" id="nomorKtp" placeholder="Nomor KTP">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-bold">Nomor KTP (NIK)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-hashtag"></i></span>
+                            <input type="text" class="form-control" id="nomorKtp" placeholder="Masukkan NIK 16 digit">
+                        </div>
+                    </div>
 
-    <input type="text" id="namaLengkap" placeholder="Nama Lengkap">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-bold">Nama Lengkap</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-user"></i></span>
+                            <input type="text" class="form-control" id="namaLengkap" placeholder="Sesuai KTP">
+                        </div>
+                    </div>
 
-    <input type="text" id="alamat" placeholder="Alamat">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-bold">Alamat Lengkap</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-location-dot"></i></span>
+                            <input type="text" class="form-control" id="alamat" placeholder="Jalan, RT/RW, Desa">
+                        </div>
+                    </div>
 
-    <input type="date" id="tanggalLahir">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-bold">Tanggal Lahir</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-calendar-days"></i></span>
+                            <input type="date" class="form-control" id="tanggalLahir">
+                        </div>
+                    </div>
 
-    <select id="jenisKelamin">
-        <option value="">Pilih Jenis Kelamin</option>
-        <option value="Laki-Laki">Laki-Laki</option>
-        <option value="Perempuan">Perempuan</option>
-    </select>
+                    <div class="mb-4">
+                        <label class="form-label text-muted small fw-bold">Jenis Kelamin</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-venus-mars"></i></span>
+                            <select class="form-select" id="jenisKelamin">
+                                <option value="">-- Pilih Jenis Kelamin --</option>
+                                <option value="Laki-Laki">Laki-Laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
 
-    <br>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-secondary btn-custom me-md-2" onclick="clearForm()">
+                            <i class="fa-solid fa-rotate-right me-1"></i> Reset
+                        </button>
+                        <button class="btn btn-primary btn-custom" id="btnSimpan" onclick="tambahData()">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Data
+                        </button>
+                        <button class="btn btn-warning btn-custom text-white d-none" id="btnUpdate" onclick="updateData()">
+                            <i class="fa-solid fa-pen-to-square me-1"></i> Update Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <button onclick="tambahData()">Tambah</button>
-    <button onclick="updateData()">Update</button>
+        <div class="col-lg-8">
+            <div class="card h-100">
+                <div class="card-header bg-white border-bottom pb-0 pt-3 d-flex justify-content-between align-items-center">
+                    <h5 class="text-primary fw-bold"><i class="fa-solid fa-list me-2"></i>Daftar Penduduk</h5>
+                    <button class="btn btn-sm btn-outline-primary" onclick="loadData()"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-custom align-middle text-center table-bordered">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>NIK</th>
+                                <th>Nama Lengkap</th>
+                                <th>Alamat</th>
+                                <th>Tgl Lahir</th>
+                                <th>L/P</th>
+                                <th style="width: 150px;">Aksi</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tabelKtp">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h2>Daftar Data KTP</h2>
-
-    <table>
-
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nomor KTP</th>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>Tanggal Lahir</th>
-            <th>Jenis Kelamin</th>
-            <th>Aksi</th>
-        </tr>
-        </thead>
-
-        <tbody id="tabelKtp"></tbody>
-
-    </table>
-
+    </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-
     let api = "http://localhost:8080/ktp";
 
     $(document).ready(function(){
-
-    loadData();
-
+        loadData();
     });
 
-
+    // 1. Fungsi Tampil Data
     function loadData(){
+        $("#tabelKtp").html(`<tr><td colspan="7" class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></td></tr>`);
 
-    $.get(api,function(data){
+        $.get(api, function(data){
+            let html = "";
+            let no = 1;
 
-    let html="";
-
-    data.forEach(function(item){
-
-    html += `
-    <tr>
-    <td>${item.id}</td>
-    <td>${item.nomorKtp}</td>
-    <td>${item.namaLengkap}</td>
-    <td>${item.alamat}</td>
-    <td>${item.tanggalLahir}</td>
-    <td>${item.jenisKelamin}</td>
-
-    <td>
-
-    <button onclick="editData(${item.id},
-    '${item.nomorKtp}',
-    '${item.namaLengkap}',
-    '${item.alamat}',
-    '${item.tanggalLahir}',
-    '${item.jenisKelamin}')">
-
-    Edit
-
-    </button>
-
-    <button onclick="hapusData(${item.id})">
-
-    Hapus
-
-    </button>
-
-    </td>
-
-    </tr>
-    `;
-
-    });
-
-    $("#tabelKtp").html(html);
-
-    });
-
+            if(data.length === 0) {
+                html = `<tr><td colspan="7" class="text-center text-muted py-4">Belum ada data KTP.</td></tr>`;
+            } else {
+                data.forEach(function(item){
+                    html += `
+                    <tr>
+                        <td>${no++}</td>
+                        <td class="fw-bold">${item.nomorKtp}</td>
+                        <td>${item.namaLengkap}</td>
+                        <td>${item.alamat}</td>
+                        <td>${item.tanggalLahir}</td>
+                        <td><span class="badge ${item.jenisKelamin === 'Laki-Laki' ? 'bg-info' : 'bg-danger'}">${item.jenisKelamin}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-warning text-white" title="Edit"
+                                onclick="editData(${item.id}, '${item.nomorKtp}', '${item.namaLengkap}', '${item.alamat}', '${item.tanggalLahir}', '${item.jenisKelamin}')">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" title="Hapus" onclick="hapusData(${item.id})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    `;
+                });
+            }
+            $("#tabelKtp").html(html);
+        }).fail(function(){
+            $("#tabelKtp").html(`<tr><td colspan="7" class="text-center text-danger">Gagal terhubung ke Server! Pastikan Spring Boot menyala.</td></tr>`);
+        });
     }
 
-
-
+    // 2. Fungsi Tambah Data
     function tambahData(){
+        let data = {
+            nomorKtp: $("#nomorKtp").val(),
+            namaLengkap: $("#namaLengkap").val(),
+            alamat: $("#alamat").val(),
+            tanggalLahir: $("#tanggalLahir").val(),
+            jenisKelamin: $("#jenisKelamin").val()
+        };
 
-    let data={
+        // Validasi form kosong
+        if(!data.nomorKtp || !data.namaLengkap || !data.tanggalLahir){
+            Swal.fire('Oops!', 'Mohon lengkapi NIK, Nama, dan Tanggal Lahir!', 'warning');
+            return;
+        }
 
-    nomorKtp:$("#nomorKtp").val(),
-    namaLengkap:$("#namaLengkap").val(),
-    alamat:$("#alamat").val(),
-    tanggalLahir:$("#tanggalLahir").val(),
-    jenisKelamin:$("#jenisKelamin").val()
-
-    };
-
-    $.ajax({
-
-    url:api,
-    type:"POST",
-    contentType:"application/json",
-    data:JSON.stringify(data),
-
-    success:function(){
-
-    alert("Data berhasil ditambahkan");
-    loadData();
-    clearForm();
-
-    },
-
-    error:function(){
-
-    alert("Terjadi error");
-
+        $.ajax({
+            url: api,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function(){
+                Swal.fire('Berhasil!', 'Data KTP sukses ditambahkan.', 'success');
+                loadData();
+                clearForm();
+            },
+            error: function(){
+                Swal.fire('Gagal!', 'Terjadi kesalahan saat menyimpan data.', 'error');
+            }
+        });
     }
 
-    });
+    // 3. Fungsi Isi Form untuk Edit
+    function editData(id, nomor, nama, alamat, tanggal, jk){
+        $("#id").val(id);
+        $("#nomorKtp").val(nomor);
+        $("#namaLengkap").val(nama);
+        $("#alamat").val(alamat);
+        $("#tanggalLahir").val(tanggal);
+        $("#jenisKelamin").val(jk);
 
+        // Sembunyikan tombol Simpan, tampilkan tombol Update
+        $("#btnSimpan").addClass("d-none");
+        $("#btnUpdate").removeClass("d-none");
     }
 
-
-
-    function editData(id,nomor,nama,alamat,tanggal,jk){
-
-    $("#id").val(id);
-    $("#nomorKtp").val(nomor);
-    $("#namaLengkap").val(nama);
-    $("#alamat").val(alamat);
-    $("#tanggalLahir").val(tanggal);
-    $("#jenisKelamin").val(jk);
-
-    }
-
-
-
+    // 4. Fungsi Update Data
     function updateData(){
+        let id = $("#id").val();
+        let data = {
+            nomorKtp: $("#nomorKtp").val(),
+            namaLengkap: $("#namaLengkap").val(),
+            alamat: $("#alamat").val(),
+            tanggalLahir: $("#tanggalLahir").val(),
+            jenisKelamin: $("#jenisKelamin").val()
+        };
 
-    let id=$("#id").val();
-
-    let data={
-
-    nomorKtp:$("#nomorKtp").val(),
-    namaLengkap:$("#namaLengkap").val(),
-    alamat:$("#alamat").val(),
-    tanggalLahir:$("#tanggalLahir").val(),
-    jenisKelamin:$("#jenisKelamin").val()
-
-    };
-
-    $.ajax({
-
-    url:api+"/"+id,
-    type:"PUT",
-    contentType:"application/json",
-    data:JSON.stringify(data),
-
-    success:function(){
-
-    alert("Data berhasil diupdate");
-    loadData();
-    clearForm();
-
+        $.ajax({
+            url: api + "/" + id,
+            type: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function(){
+                Swal.fire('Diperbarui!', 'Data KTP berhasil diupdate.', 'success');
+                loadData();
+                clearForm();
+            },
+            error: function(){
+                Swal.fire('Gagal!', 'Terjadi kesalahan saat mengupdate data.', 'error');
+            }
+        });
     }
 
-    });
-
-    }
-
-
-
+    // 5. Fungsi Hapus Data
     function hapusData(id){
-
-    if(confirm("Yakin ingin hapus data?")){
-
-    $.ajax({
-
-    url:api+"/"+id,
-    type:"DELETE",
-
-    success:function(){
-
-    alert("Data berhasil dihapus");
-    loadData();
-
+        Swal.fire({
+            title: 'Yakin ingin menghapus?',
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: api + "/" + id,
+                    type: "DELETE",
+                    success: function(){
+                        Swal.fire('Terhapus!', 'Data KTP telah dihapus.', 'success');
+                        loadData();
+                    }
+                });
+            }
+        })
     }
 
-    });
-
-    }
-
-    }
-
-
-
+    // 6. Fungsi Bersihkan Form
     function clearForm(){
+        $("#id").val("");
+        $("#nomorKtp").val("");
+        $("#namaLengkap").val("");
+        $("#alamat").val("");
+        $("#tanggalLahir").val("");
+        $("#jenisKelamin").val("");
 
-    $("#id").val("");
-    $("#nomorKtp").val("");
-    $("#namaLengkap").val("");
-    $("#alamat").val("");
-    $("#tanggalLahir").val("");
-    $("#jenisKelamin").val("");
-
+        // Kembalikan tombol ke mode Simpan
+        $("#btnSimpan").removeClass("d-none");
+        $("#btnUpdate").addClass("d-none");
     }
-
 </script>
-
 </body>
 </html>
-```
