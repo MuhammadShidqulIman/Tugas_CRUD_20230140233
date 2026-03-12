@@ -5,9 +5,7 @@ import com.example.ktp_api.entity.KtpEntity;
 import com.example.ktp_api.mapper.KtpMapper;
 import com.example.ktp_api.repository.KtpRepository;
 import com.example.ktp_api.service.KtpService;
-
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
