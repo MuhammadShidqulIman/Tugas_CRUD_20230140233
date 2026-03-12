@@ -58,7 +58,7 @@ Response Body (success):
 }
 ```
 
-### 3️⃣ Get User
+### 3️⃣ Get
 
 **Method:** `GET`
 
